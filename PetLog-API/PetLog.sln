@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D9B50CE1-8E70-4F34-90CB-7293387A4F4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetLog.Api", "src\PetLog.Api\PetLog.Api.csproj", "{2430E1E2-17B8-4637-9C97-A729D2C430D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetLog.Dominio", "src\PetLog.Dominio\PetLog.Dominio.csproj", "{C3DB40C8-9DF8-43C9-9664-A01AE741345A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetLog.Aplicacao", "src\PetLog.Aplicacao\PetLog.Aplicacao.csproj", "{908BD949-C3FC-4EB6-8287-6EED06FD8C03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetLog.Repository", "src\PetLog.Repository\PetLog.Repository.csproj", "{46EB8574-433F-43FA-8B71-E58627A43911}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetLog.Services", "src\PetLog.Services\PetLog.Services.csproj", "{B60E1451-B850-4035-8703-38BDD11EB6ED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2430E1E2-17B8-4637-9C97-A729D2C430D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2430E1E2-17B8-4637-9C97-A729D2C430D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2430E1E2-17B8-4637-9C97-A729D2C430D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2430E1E2-17B8-4637-9C97-A729D2C430D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3DB40C8-9DF8-43C9-9664-A01AE741345A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3DB40C8-9DF8-43C9-9664-A01AE741345A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3DB40C8-9DF8-43C9-9664-A01AE741345A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3DB40C8-9DF8-43C9-9664-A01AE741345A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{908BD949-C3FC-4EB6-8287-6EED06FD8C03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{908BD949-C3FC-4EB6-8287-6EED06FD8C03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{908BD949-C3FC-4EB6-8287-6EED06FD8C03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{908BD949-C3FC-4EB6-8287-6EED06FD8C03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46EB8574-433F-43FA-8B71-E58627A43911}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46EB8574-433F-43FA-8B71-E58627A43911}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46EB8574-433F-43FA-8B71-E58627A43911}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46EB8574-433F-43FA-8B71-E58627A43911}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B60E1451-B850-4035-8703-38BDD11EB6ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B60E1451-B850-4035-8703-38BDD11EB6ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B60E1451-B850-4035-8703-38BDD11EB6ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B60E1451-B850-4035-8703-38BDD11EB6ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2430E1E2-17B8-4637-9C97-A729D2C430D6} = {D9B50CE1-8E70-4F34-90CB-7293387A4F4E}
+		{C3DB40C8-9DF8-43C9-9664-A01AE741345A} = {D9B50CE1-8E70-4F34-90CB-7293387A4F4E}
+		{908BD949-C3FC-4EB6-8287-6EED06FD8C03} = {D9B50CE1-8E70-4F34-90CB-7293387A4F4E}
+		{46EB8574-433F-43FA-8B71-E58627A43911} = {D9B50CE1-8E70-4F34-90CB-7293387A4F4E}
+		{B60E1451-B850-4035-8703-38BDD11EB6ED} = {D9B50CE1-8E70-4F34-90CB-7293387A4F4E}
+	EndGlobalSection
+EndGlobal
