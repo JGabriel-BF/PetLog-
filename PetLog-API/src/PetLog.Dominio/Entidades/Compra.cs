@@ -15,8 +15,11 @@ public class Compra
     public DateTime DataCompra {get; set;}
     public decimal Valor {get; set;}
     public bool Concluido {get; set;}
+
+    public bool Ativo {get; set;}
     public Compra()
     {
         Concluido = false;
+        Ativo = true;
     }
 }

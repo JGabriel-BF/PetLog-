@@ -5,5 +5,11 @@ public class Cliente
     public string Nome {get; set;}
     public string SobreNome {get; set;}
     public long Telefone {get; set;}
+    public bool Ativo {get; set;}
     public List<Compra> Compras {get; set;}
+
+    public Cliente()
+    {
+        Ativo = true;
+    }
 }

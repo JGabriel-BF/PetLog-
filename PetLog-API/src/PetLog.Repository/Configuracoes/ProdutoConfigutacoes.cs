@@ -16,6 +16,7 @@ public class ProdutoConfiguracoes : IEntityTypeConfiguration<Produto>
         builder.Property(produto => produto.QuantidadeEstoque).HasColumnName("QuantidadeEstoque").IsRequired(true);
         builder.Property(produto => produto.QuantidadeMinima).HasColumnName("QuantidadeMinima").IsRequired(true);
         builder.Property(produto => produto.Tipo).HasColumnName("TipoProdutoId").IsRequired(true);
+        builder.Property(produto => produto.Ativo).HasColumnName("Ativo").IsRequired(true);
 
         builder
         .HasMany(produto => produto.Compras)
