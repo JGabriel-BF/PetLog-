@@ -8,6 +8,7 @@ namespace PetLog.Repositorio.Interfaces
         Task Atualizar (Vendedor vendedor);
         Task Deletar (Vendedor vendedor);
         Task <Vendedor> Obter(int vendedorId);
+        Task<Vendedor> ObterPorId(int vendedorId);
         Task<IEnumerable<Vendedor>> Listar (bool ativo);
         Task<IEnumerable<Vendedor>> Busca (string filtro, bool ativo = true);
     }

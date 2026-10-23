@@ -8,6 +8,7 @@ namespace PetLog.Repositorio.Interfaces
         Task Atualizar (Produto produto);
         Task Deletar (Produto produto);
         Task <Produto> Obter (int produtoId);
+        Task <Produto> ObterPorId (int produtoId);
         Task <IEnumerable<Produto>> Listar (bool ativo);
         Task <IEnumerable<Produto>> Busca (string filtro, bool ativo = true);
     }
