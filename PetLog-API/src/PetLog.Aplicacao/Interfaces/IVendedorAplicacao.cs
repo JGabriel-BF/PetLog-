@@ -1,19 +1,18 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using PetLog.Dominio.Entidades;
+using PetLog.Aplicacao.DTOs;
 
 namespace PetLog.Aplicacao
 {
     public interface IVendedorAplicacao
     {
-        Task <int> Criar (Vendedor vendedorDTO, int vendedorLoginId);
-        Task Atualizar (Vendedor vendedorDTO, int vendedorLoginId);
-        Task Deletar (int vendedorId, int vendedorLoginId);
-        Task Restaurar (int vendedorId, int vendedorLoginId);
-        Task <IEnumerable<Vendedor>> Listar(bool ativo, int vendedorLoginId);
-        Task<Vendedor> Obter (int vendedorId, int vendedorLoginId);
-        Task <Vendedor> ObterPorId (int vendedorId, int vendedorLoginId);
-        Task <IEnumerable<Vendedor>> Busca (string filtro, int usuarioId, bool ativo = true);
-        
+        Task<int> Criar(VendedorRequisicao vendedorRequisicao);
+        Task Atualizar(VendedorAtualizar vendedorAtualizar);
+        Task Deletar(int vendedorId);
+        Task Restaurar(int vendedorId);
+        Task<IEnumerable<VendedorRespostaDTO>> Listar(bool ativo);
+        Task<VendedorRespostaDTO> ObterPorEmail(string email);
+        Task<VendedorRespostaDTO> ObterPorId(int vendedorId);
+        Task<IEnumerable<VendedorRespostaDTO>> Busca(string filtro, bool ativo = true);
     }
 }

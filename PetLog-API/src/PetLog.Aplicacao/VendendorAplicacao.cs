@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using PetLog.Aplicacao.DTOs;
 using PetLog.Dominio.Entidades;
-using PetLog.Dominio.Enumeradores;
 using PetLog.Repositorio.Interfaces;
 
 namespace PetLog.Aplicacao
@@ -16,110 +17,170 @@ namespace PetLog.Aplicacao
             _vendedorRepositorio = vendedorRepositorio;
         }
 
-        public async Task<int> Criar (Vendedor vendedor, int vendedorLoginId)
+        public async Task<int> Criar(VendedorRequisicao vendedorRequisicao)
         {
-            if (vendedor == null)
-                throw new Exception("Vendedor não pode ser vazio");
+            if (vendedorRequisicao == null)
+                throw new ArgumentException("Vendedor não pode ser vazio!");
 
-            ValidarInformacoesVendedor(vendedor);
+            ValidarInformacoesVendedor(vendedorRequisicao);
 
-            if (string.IsNullOrEmpty(vendedor.Senha))
-            throw new Exception ("Senha não pode ser vazia");
+            if (await _vendedorRepositorio.ObterPorEmail(vendedorRequisicao.Email) != null)
+                throw new InvalidOperationException("Vendedor já cadastrado!");
 
-            if (vendedor.Senha.Length < 6)
-            throw new Exception("A senha deve ter no mínimo 6 caracteres");
+            var vendedor = new Vendedor()
+            {
+                Nome = vendedorRequisicao.Nome,
+                Email = vendedorRequisicao.Email,
+                Senha = vendedorRequisicao.Senha
+            };
 
             return await _vendedorRepositorio.Salvar(vendedor);
         }
 
-        public async Task Atualizar (Vendedor vendedor, int vendedorLoginId)
+        public async Task Atualizar(VendedorAtualizar vendedorAtualizar)
         {
-            var vendedorDominio = await _vendedorRepositorio.Obter(vendedor.Id);
+            if (vendedorAtualizar == null)
+                throw new ArgumentException("Vendedor não pode ser vazio!");
 
-            if (vendedorDominio == null)
-            throw new Exception("Vendedor não encontrado");
+            ValidarInformacoesAtualizar(vendedorAtualizar);
 
-            ValidarInformacoesVendedor(vendedorDominio);
+            var vendedor = await _vendedorRepositorio.ObterPorId(vendedorAtualizar.Id);
 
-            vendedorDominio.Nome = vendedor.Nome;
-            vendedorDominio.Email = vendedor.Email;
+            if (vendedor == null)
+                throw new ArgumentException("Vendedor não encontrado!");
 
-            await _vendedorRepositorio.Atualizar(vendedorDominio);
+            vendedor.Nome = vendedorAtualizar.Nome;
+            vendedor.Email = vendedorAtualizar.Email;
+
+            await _vendedorRepositorio.Atualizar(vendedor);
         }
 
-        public async Task <Vendedor> Obter (int vendedorId, int vendedorLoginId)
+        public async Task Deletar(int vendedorId)
         {
-            var vendedorDominio = await _vendedorRepositorio.Obter(vendedorId);
+            if (vendedorId <= 0)
+                throw new ArgumentException("Id do vendedor inválido!");
 
-            if (vendedorDominio == null)
-            throw new Exception("Vendedor não encontrado");
+            var vendedor = await _vendedorRepositorio.ObterPorId(vendedorId);
 
-            return vendedorDominio;
+            if (vendedor == null)
+                throw new ArgumentException("Vendedor não encontrado!");
+
+            vendedor.Deletar();
+
+            await _vendedorRepositorio.Atualizar(vendedor);
         }
 
-        public async Task <Vendedor> ObterPorId (int vendedorId, int vendedorLoginId)
+        public async Task Restaurar(int vendedorId)
         {
-            var vendedorDominio = await _vendedorRepositorio.ObterPorId(vendedorId);
+            if (vendedorId <= 0)
+                throw new ArgumentException("Id do vendedor inválido!");
 
-            if (vendedorDominio == null)
-            throw new Exception("Vendedor não encontrado");
+            var vendedor = await _vendedorRepositorio.ObterPorId(vendedorId);
 
-            return vendedorDominio;
+            if (vendedor == null)
+                throw new ArgumentException("Vendedor não encontrado!");
+
+            vendedor.Restaurar();
+
+            await _vendedorRepositorio.Atualizar(vendedor);
         }
 
-        public async Task Restaurar (int vendedorId, int vendedorLoginId)
-        {
-            var vendedorDominio = await _vendedorRepositorio.ObterPorId(vendedorId);
+ public async Task<VendedorRespostaDTO> ObterPorEmail(string email)
+{
+    if (string.IsNullOrWhiteSpace(email))
+        throw new ArgumentException("E-mail não pode ser vazio!");
 
-            if (vendedorDominio == null)
-            throw new Exception ("Vendedor não encontrado");
-            vendedorDominio.Restaurar();
-            await _vendedorRepositorio.Atualizar(vendedorDominio);
+    if (!email.Contains("@"))
+        throw new ArgumentException("E-mail deve conter @!");
+
+    var vendedor = await _vendedorRepositorio.ObterPorEmail(email);
+
+    if (vendedor == null)
+        throw new ArgumentException("Vendedor não encontrado!");
+
+    return ConverterParaResposta(vendedor);
+}
+
+        public async Task<VendedorRespostaDTO> ObterPorId(int vendedorId)
+        {
+            if (vendedorId <= 0)
+                throw new ArgumentException("Id do vendedor inválido!");
+
+            var vendedor = await _vendedorRepositorio.ObterPorId(vendedorId);
+
+            if (vendedor == null)
+                throw new ArgumentException("Vendedor não encontrado!");
+
+            return ConverterParaResposta(vendedor);
         }
 
-        public async Task Deletar (int vendedorId, int vendedorLoginId)
+        public async Task<IEnumerable<VendedorRespostaDTO>> Listar(bool ativo)
         {
-            var vendedorDominio = await _vendedorRepositorio.Obter(vendedorId);
+            var vendedores = await _vendedorRepositorio.Listar(ativo);
 
-            if (vendedorDominio == null)
-            throw new Exception("Vendedor não encontrado");
-
-            vendedorDominio.Deletar();
-            await _vendedorRepositorio.Atualizar(vendedorDominio);
+            return vendedores.Select(v => ConverterParaResposta(v)).ToList();
         }
 
-        public async Task<IEnumerable<Vendedor>> Listar (bool ativo, int vendedorId)
+        public async Task<IEnumerable<VendedorRespostaDTO>> Busca(string filtro, bool ativo = true)
         {
-            return await _vendedorRepositorio.Listar(ativo);
+            var vendedores = await _vendedorRepositorio.Listar(ativo);
+
+            if (!string.IsNullOrWhiteSpace(filtro))
+            {
+                var filtroMinusculo = filtro.ToLower();
+
+                vendedores = vendedores.Where(v =>
+                    v.Nome.ToLower().Contains(filtroMinusculo) ||
+                    v.Email.ToLower().Contains(filtroMinusculo));
+            }
+
+            return vendedores.Select(v => ConverterParaResposta(v)).ToList();
         }
 
-        public async Task <IEnumerable<Vendedor>> Busca (string filtro, int vendedorId, bool ativo = true)
+        #region util
+        private static void ValidarInformacoesVendedor(VendedorRequisicao vendedorRequisicao)
         {
-            return await _vendedorRepositorio.Listar(ativo);
+            if (string.IsNullOrWhiteSpace(vendedorRequisicao.Nome))
+                throw new ArgumentException("Nome não pode ser vazio!");
+
+            if (string.IsNullOrWhiteSpace(vendedorRequisicao.Email))
+                throw new ArgumentException("E-mail não pode ser vazio!");
+
+            if (!vendedorRequisicao.Email.Contains("@"))
+                throw new ArgumentException("E-mail deve conter @!");
+
+            if (string.IsNullOrWhiteSpace(vendedorRequisicao.Senha))
+                throw new ArgumentException("Senha não pode ser vazia!");
+
+            if (vendedorRequisicao.Senha.Length < 6)
+                throw new ArgumentException("A senha deve ter no mínimo 6 caracteres!");
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-        #region baguals
-        private static void ValidarInformacoesVendedor(Vendedor vendedor)
+        private static void ValidarInformacoesAtualizar(VendedorAtualizar vendedorAtualizar)
         {
-            if (string.IsNullOrEmpty(vendedor.Nome))
-            throw new Exception("Nome não pode ser vazio");
+            if (vendedorAtualizar.Id <= 0)
+                throw new ArgumentException("Id do vendedor inválido!");
 
-            if (string.IsNullOrEmpty(vendedor.Email))
-            throw new Exception("E-Mail não pode ser vazio");
+            if (string.IsNullOrWhiteSpace(vendedorAtualizar.Nome))
+                throw new ArgumentException("Nome não pode ser vazio!");
+
+            if (string.IsNullOrWhiteSpace(vendedorAtualizar.Email))
+                throw new ArgumentException("E-mail não pode ser vazio!");
+
+            if (!vendedorAtualizar.Email.Contains("@"))
+                throw new ArgumentException("E-mail deve conter @!");
+        }
+
+        private static VendedorRespostaDTO ConverterParaResposta(Vendedor vendedor)
+        {
+            return new VendedorRespostaDTO()
+            {
+                Id = vendedor.Id,
+                Nome = vendedor.Nome,
+                Email = vendedor.Email,
+                Ativo = vendedor.Ativo
+            };
         }
         #endregion
     }
 }
-

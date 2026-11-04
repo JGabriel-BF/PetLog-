@@ -1,20 +1,17 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using PetLog.Dominio.Entidades;
 
 namespace PetLog.Aplicacao
 {
     public interface ICompraAplicacao
     {
-        Task <int> Criar (Compra compra);
-        Task Atualizar (Compra compra);
-        Task Deletar (Compra compra);
-        Task Restaurar (Compra compra);
-        Task<IEnumerable<Compra>> Listar (bool ativo);
-        Task Obter (int compraId);
-        Task ObterPorId (int compraId);
-        Task <IEnumerable<Compra>> Busca (string filtro, bool ativo = true);
-        Task ConcluirCompra (Compra compra);
-
+        Task<int> Criar(CompraRequisicao compraRequisicao);
+        Task Atualizar(CompraAtualizar compraAtualizar);
+        Task Deletar(int compraId);
+        Task Restaurar(int compraId);
+        Task ConcluirCompra(int compraId);
+        Task<IEnumerable<CompraResposta>> Listar(bool ativo);
+        Task<CompraResposta> ObterPorId(int compraId);
+        Task<IEnumerable<CompraResposta>> Busca(string filtro, bool ativo = true);
     }
 }

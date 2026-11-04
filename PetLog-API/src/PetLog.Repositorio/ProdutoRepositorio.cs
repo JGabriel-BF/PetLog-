@@ -15,7 +15,7 @@ namespace PetLog.Repositorio
         public async Task <int> Salvar (Produto produto)
         {
             _contexto.Produtos.Add(produto);
-            _contexto.SaveChangesAsync();
+            await _contexto.SaveChangesAsync();
             return produto.Id;
         }
 
