@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PetLog.Dominio\PetLog.Dominio.csproj" />
+    <ProjectReference Include="..\PetLog.Repositorio\PetLog.Repositorio.csproj" />
 
   </ItemGroup>
 

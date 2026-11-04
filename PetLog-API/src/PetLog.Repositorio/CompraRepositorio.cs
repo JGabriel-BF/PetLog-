@@ -16,7 +16,7 @@ namespace PetLog.Repositorio
         public async Task <int> Salvar (Compra compra)
         {
             _contexto.Compras.Add(compra);
-            _contexto.SaveChangesAsync();
+            await _contexto.SaveChangesAsync();
             return compra.Id;
         }
 
@@ -33,24 +33,25 @@ namespace PetLog.Repositorio
             await _contexto.SaveChangesAsync();
         }
 
-        public async Task <Compra> Obter (int compraId)
-        {
-            return await _contexto.Compras.Where(u => u.Id == compraId && u.Ativo).FirstOrDefaultAsync();
-        } 
-
         public async Task <Compra> ObterPorId (int compraId)
         {
-            return await _contexto.Compras.Where(u => u.Id == compraId).FirstOrDefaultAsync();
-        }
+            return await _contexto.Compras
+            .Include(c => c.Produtos).Include(c => c.Cliente).Include(c => c.Vendedor)
+            .Where(u => u.Id == compraId && u.Ativo).FirstOrDefaultAsync();
+        } 
 
         public async Task <IEnumerable<Compra>> Listar (bool ativo)
         {
-            return await _contexto.Compras.Where(U => U.Ativo ==ativo).ToListAsync();
+            return await _contexto.Compras
+            .Include(c => c.Produtos).Include(c => c.Cliente).Include(c => c.Vendedor)
+            .Where(U => U.Ativo ==ativo).ToListAsync();
         }
 
         public async Task<IEnumerable<Compra>> Busca (string filtro, bool ativo = true)
         {
-            var resultadoBusca = _contexto.Compras.Where(compra => compra.Ativo == ativo);
+            var resultadoBusca = _contexto.Compras
+            .Include(c => c.Produtos).Include(c => c.Cliente).Include(c => c.Vendedor)
+            .Where(compra => compra.Ativo == ativo);
 
             if (!string.IsNullOrWhiteSpace(filtro))
             {

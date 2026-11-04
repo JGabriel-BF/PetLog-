@@ -32,9 +32,9 @@ public class VendedorRepositorio : BaseRepositorio, IVendedorRepositorio
         await _contexto.SaveChangesAsync();
     }
 
-    public async Task<Vendedor> Obter (int vendedorId)
+    public async Task<Vendedor> ObterPorEmail (string email)
     {
-        return await _contexto.Vendedores.Where(u => u.Id == vendedorId && u.Ativo).FirstOrDefaultAsync();
+        return await _contexto.Vendedores.Where(u => u.Email == email && u.Ativo).FirstOrDefaultAsync();
     }
 
     public async Task <Vendedor> ObterPorId(int vendedorId)
