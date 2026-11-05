@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using PetLog.Aplicacao;
 
-namespace PetLog.Api;
+namespace PetLog.Api
+{
 
 [ApiController]
 [Route("[controller]")]
@@ -25,9 +26,9 @@ public class VendedorController : ControllerBase
             return Ok(vendedor);
         }
 
-        catch (UnauthorizedAccessException ex)
+        catch (ArgumentException ex)
         {
-            return Unauthorized(ex.Message);
+            return BadRequest(ex.Message);
         }
 
         catch (Exception ex)
@@ -37,7 +38,7 @@ public class VendedorController : ControllerBase
     }
 
     [HttpGet]
-    [Route("obterporemail")]
+    [Route("ObterPorEmail")]
     public async Task<ActionResult> ObterPorEmail([FromQuery] string email)
     {
         try
@@ -67,11 +68,11 @@ public class VendedorController : ControllerBase
             return Ok (vendedorId);
         }
 
-        catch (UnauthorizedAccessException ex)
+        catch (ArgumentException ex)
         {
-            return Unauthorized (ex.Message);
+            return BadRequest(ex.Message);
         }
-        
+
         catch (Exception ex)
         {
             return BadRequest(ex.Message);
@@ -190,3 +191,4 @@ public class VendedorController : ControllerBase
     }
 }
 
+}
