@@ -31,7 +31,8 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<PetLogContexto>(options => options.UseSqlServer(builder.Configuration.GetConnectionString(" PetLog")));
+builder.Services.AddDbContext<PetLogContexto>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("PetLog")));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

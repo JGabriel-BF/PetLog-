@@ -4,7 +4,7 @@ using PetLog.Aplicacao;
 namespace PetLog.Api;
 
 [ApiController]
-[Route("controller")]
+[Route("[controller]")]
 
 public class ClienteController : ControllerBase
 {
@@ -42,8 +42,8 @@ public class ClienteController : ControllerBase
     {
         try
         {
-            var clieneId = await _clienteAplicacao.Criar(clienteRequisicao);
-            return Ok (clieneId);
+            var clienteId = await _clienteAplicacao.Criar(clienteRequisicao);
+            return Ok (clienteId);
         }
         catch (ArgumentException ex)
         {
@@ -77,7 +77,7 @@ public class ClienteController : ControllerBase
     }
 
     [HttpDelete]
-    [Route("Deletar")]
+    [Route("Deletar/{clienteId}")]
     public async Task <ActionResult> Deletar ([FromRoute] int clienteId)
     {
         try
@@ -120,7 +120,7 @@ public class ClienteController : ControllerBase
 
     [HttpGet]
     [Route ("Listar")]
-    public async Task <ActionResult> Listar ([FromQuery] bool ativo)
+    public async Task <ActionResult> Listar ([FromQuery] bool ativo = true)
     {
         try
         {
@@ -145,7 +145,7 @@ public class ClienteController : ControllerBase
     {
         try
         {
-            var retornoBusca = await _clienteAplicacao.Busca(filtro);
+            var retornoBusca = await _clienteAplicacao.Busca(filtro, ativo);
             return Ok (retornoBusca);
         }
 
