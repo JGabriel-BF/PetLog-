@@ -15,7 +15,7 @@ public class VendedorRepositorio : BaseRepositorio, IVendedorRepositorio
     public async Task<int> Salvar (Vendedor vendedor)
     {
         _contexto.Vendedores.Add(vendedor);
-        _contexto.SaveChangesAsync();
+        await _contexto.SaveChangesAsync();
         return vendedor.Id;
     }
 

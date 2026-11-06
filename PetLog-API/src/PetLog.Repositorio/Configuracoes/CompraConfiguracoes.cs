@@ -11,7 +11,6 @@ public class CompraConfiguracoes : IEntityTypeConfiguration<Compra>
         builder.ToTable("Compras").HasKey(compra => compra.Id);
 
         builder.Property(compra => compra.Id).HasColumnName("CompraId").IsRequired(true);
-        builder.Property(compra => compra.Produtos).HasColumnName("TipoProdutos").IsRequired(true);
         builder.Property(compra => compra.Quantidade).HasColumnName("Quantidade").IsRequired(true);
         builder.Property(compra => compra.ClienteId).HasColumnName("ClienteId").IsRequired(true);
         builder.Property(compra => compra.VendedorId).HasColumnName("VendedorId").IsRequired(true);

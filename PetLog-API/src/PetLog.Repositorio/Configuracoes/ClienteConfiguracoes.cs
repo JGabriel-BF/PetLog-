@@ -14,7 +14,6 @@ public class ClienteConfiguracoes : IEntityTypeConfiguration<Cliente>
         builder.Property(cliente => cliente.Nome).HasColumnName("Nome").IsRequired(true).HasMaxLength(50);
         builder.Property(cliente => cliente.SobreNome).HasColumnName("Sobrenome").IsRequired(true).HasMaxLength(100);
         builder.Property(cliente => cliente.Telefone).HasColumnName("Telefone").IsRequired(true).HasMaxLength(15);
-        builder.Property(cliente => cliente.Compras).HasColumnName("Compras").IsRequired(true);
         builder.Property(cliente => cliente.Ativo).HasColumnName("Ativo").IsRequired(true);
         
     }
