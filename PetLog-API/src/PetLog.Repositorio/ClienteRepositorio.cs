@@ -15,7 +15,7 @@ namespace PetLog.Repositorio
         public async Task <int> Salvar (Cliente cliente)
         {
             _contexto.Clientes.Add(cliente);
-            _contexto.SaveChangesAsync();
+            await _contexto.SaveChangesAsync();
             return cliente.Id;
         }
 
