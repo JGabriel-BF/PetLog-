@@ -137,6 +137,25 @@ namespace PetLog.Aplicacao
             return vendedores.Select(v => ConverterParaResposta(v)).ToList();
         }
 
+        public async Task<VendedorRespostaDTO> Login(VendedorLogin vendedorLogin)
+        {
+            if (vendedorLogin == null)
+            throw new ArgumentException("Dados de login não podem ser vazios!");
+
+        if (string.IsNullOrWhiteSpace(vendedorLogin.Email))
+        throw new ArgumentException("E-mail não pode ser vazio!");
+
+        if (string.IsNullOrWhiteSpace(vendedorLogin.Senha))
+        throw new ArgumentException("Senha não pode ser vazia!");
+
+        var vendedor = await _vendedorRepositorio.ObterPorEmail(vendedorLogin.Email);
+
+        if (vendedor == null || vendedor.Senha != vendedorLogin.Senha)
+        throw new UnauthorizedAccessException("E-mail ou senha inválidos!");
+
+        return ConverterParaResposta(vendedor);
+}   
+
         #region util
         private static void ValidarInformacoesVendedor(VendedorRequisicao vendedorRequisicao)
         {

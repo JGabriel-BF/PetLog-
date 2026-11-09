@@ -189,6 +189,32 @@ public class VendedorController : ControllerBase
             return StatusCode (500, ex.Message);
         }
     }
+    [HttpPost]
+    [Route("Login")]
+    public async Task<ActionResult> Login([FromBody] VendedorLogin vendedorLogin)
+    {
+        try
+    {
+        var vendedor = await _vendedorAplicacao.Login(vendedorLogin);
+        return Ok(vendedor);
+    }
+
+        catch (ArgumentException ex)
+    {
+
+        return BadRequest(ex.Message);
+    }
+
+    catch (UnauthorizedAccessException ex)
+    {
+        return Unauthorized(ex.Message);
+    }
+    
+    catch (Exception ex)
+    {
+        return StatusCode(500, ex.Message);
+    }
+}
 }
 
 }
