@@ -1,11 +1,10 @@
-import style from  "./Login.module.css"
+import style from "./Login.module.css"
 import { useState } from "react";
 import LoginAPI from "../../services/loginAPI";
 import { useNavigate } from "react-router-dom";
-import Logo from "../../assets/LogoPetLog.png";
+import Logo from "../../assets/logoComTituloPetLog.png";
 import { useAlert } from "../../componentes/Alert/AlertContext";
 import { Form } from "react-bootstrap";
-import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 
 export function Login ()
 {
@@ -13,17 +12,12 @@ export function Login ()
 
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const [verSenha, setVerSenha] = useState('password')
 
     const navigate = useNavigate();
 
     const isFormValid = () => {
         return email.length > 5 && senha.length >=6;
     };
-
-    async function handleSenha() {
-        verSenha === 'password' ? setVerSenha('text') : setVerSenha('password')
-    }
 
     async function handleLogin(e)
     {
@@ -50,13 +44,13 @@ export function Login ()
         {
             if (error.response?.status === 400)
             {
-                mostrarAlerta("Usuário não encontrado, entre em contato com o seu Administrador para realizar o cadastro.", "danger");
+                mostrarAlerta("Preencha e-mail e senha corretamente.", "danger");
                 setEmail("");
                 setSenha("");
             }
             else if (error.response?.status === 401) 
             {
-                mostrarAlerta("Senha incorreta, por favor tente novamente.", "danger");
+                mostrarAlerta("E-mail ou senha inválidos, tente novamente.", "danger");
                 setSenha("");
             }
             else
@@ -68,16 +62,14 @@ export function Login ()
 
     return (
         <div className={style.login_conteudo}>
-            <div className={style.card}>
-
-            
             <img src={Logo} alt="Logo-PetLog" className={style.logo} />
 
-            <Form onSubmit={handleLogin}>
+            <Form onSubmit={handleLogin} className={style.formulario}>
 
                 <Form.Group controlId="formEmail" className="mb-3">
-                    <Form.Label>E-mail</Form.Label>
+                    <Form.Label className={style.rotulo}>E-mail</Form.Label>
                     <Form.Control
+                        className={style.campo}
                         type="email"
                         placeholder="Digite seu e-mail"
                         name="email"
@@ -86,29 +78,22 @@ export function Login ()
                         required
                     />
                 </Form.Group>
+
                 <Form.Group controlId="formSenha" className="mb-3">
-                    <Form.Label>Senha</Form.Label>
-                    <div>
-                        <Form.Control
-                        type={verSenha}
+                    <Form.Label className={style.rotulo}>Senha</Form.Label>
+                    <Form.Control
+                        className={style.campo}
+                        type="password"
                         placeholder="******"
                         name="senha"
                         value={senha}
                         onChange={(e) => setSenha(e.target.value)}
                         required
                     />
-                        <button type={"button"} onClick={handleSenha} className={style.botao_verSenha}>
-                            {verSenha === 'password' ? <IoIosEye /> : <IoIosEye />}
-                        </button>
-                    </div>
                 </Form.Group>
+
                 <button type="submit" className={style.botao_novo}>Entrar</button>
             </Form>
-            </div>
         </div>
-
-
-
-
     )
 }

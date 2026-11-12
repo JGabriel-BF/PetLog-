@@ -1,5 +1,6 @@
 .login_conteudo {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -10,41 +11,32 @@
     background-position: center;
 }
 
-.card {
-    width: 380px;
-    max-width: 90%;
-    padding: 32px;
-    border-radius: 24px;
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .logo {
-    width: 240px;
-    max-width: 100%;
+    width: 280px;
+    max-width: 90%;
     margin-bottom: 24px;
 }
 
 .formulario {
-    width: 100%;
+    width: 340px;
+    max-width: 90%;
 }
 
 .rotulo {
-    color: white;
-    margin-bottom: 4px;
+    color: white !important;
+    margin-bottom: 6px;
 }
 
 .campo {
-    background: rgba(255, 255, 255, 0.25);
-    border: none;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.25) !important;
+    border: none !important;
     border-radius: 10px;
-    color: white;
+    color: white !important;
+    outline: none;
+    box-shadow: none !important;
 }
 
 .campo::placeholder {
@@ -52,31 +44,7 @@
 }
 
 .campo:focus {
-    background: rgba(255, 255, 255, 0.35);
-    color: white;
-    box-shadow: none;
-}
-
-.campo_senha {
-    position:fixed;
-}
-
-.campo_senha .campo {
-    padding-right: 40px;
-}
-
-.botao_verSenha {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.3rem;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+    background: rgba(255, 255, 255, 0.35) !important;
 }
 
 .botao_novo {
