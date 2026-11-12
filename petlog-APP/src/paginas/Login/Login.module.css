@@ -1,0 +1,64 @@
+.login_conteudo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    background-image: url('../../assets/PetLogBackground.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.logo {
+    width: 280px;
+    max-width: 90%;
+    margin-bottom: 24px;
+}
+
+.formulario {
+    width: 340px;
+    max-width: 90%;
+}
+
+.rotulo {
+    color: white !important;
+    margin-bottom: 6px;
+}
+
+.campo {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.25) !important;
+    border: none !important;
+    border-radius: 10px;
+    color: white !important;
+    outline: none;
+    box-shadow: none !important;
+}
+
+.campo::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.campo:focus {
+    background: rgba(255, 255, 255, 0.35) !important;
+}
+
+.botao_novo {
+    border: none;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    margin-top: 8px;
+    border-radius: 10px;
+    background-color: #f08830;
+    display: block;
+    cursor: pointer;
+}
+
+.botao_novo:hover {
+    background-color: #093978;
+}
