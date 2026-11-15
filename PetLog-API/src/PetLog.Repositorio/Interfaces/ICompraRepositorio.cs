@@ -12,5 +12,6 @@ namespace PetLog.Repositorio.Interfaces
         Task <IEnumerable<Compra>> Listar (bool ativo);
         Task<IEnumerable<Compra>> Busca (string filtro, bool ativo = true);
         Task ConcluirCompra (Compra compra);
+        Task <IEnumerable<Compra>> ListarPorCliente (int clienteId);
     }
 }

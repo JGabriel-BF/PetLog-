@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using PetLog.Aplicacao;
 using PetLog.Repositorio;
 using PetLog.Repositorio.Interfaces;
+using PetLog.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,8 @@ builder.Services.AddScoped<IVendedorAplicacao, VendedorAplicacao>();
 builder.Services.AddScoped<IClienteAplicacao, ClienteAplicacao>();
 builder.Services.AddScoped<IProdutoAplicacao, ProdutoAplicacao>();
 builder.Services.AddScoped<ICompraAplicacao, CompraAplicacao>();
+builder.Services.AddHttpClient<IAIService, AIService>();
+builder.Services.AddScoped<ISugestaoAplicacao, SugestaoAplicacao>();
 
 //interfaces do banco
 builder.Services.AddScoped<IVendedorRepositorio, VendedorRepositorio>();

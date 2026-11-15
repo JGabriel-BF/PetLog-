@@ -70,6 +70,15 @@ namespace PetLog.Repositorio
             _contexto.Update(compra);
             await _contexto.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<Compra>> ListarPorCliente(int clienteId)
+        {
+            return await _contexto.Compras
+            .Include (c => c.Produtos)
+            .Where (c => c.ClienteId == clienteId && c.Ativo && c.Concluido)
+            .OrderBy( c => c.DataCompra)
+            .ToListAsync();
+        }
     }
 
 }
