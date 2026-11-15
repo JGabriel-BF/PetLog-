@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PetLog.Aplicacao\PetLog.Aplicacao.csproj" />
+    <ProjectReference Include="..\PetLog.Services\PetLog.Services.csproj" />
   </ItemGroup>
 
 </Project>
