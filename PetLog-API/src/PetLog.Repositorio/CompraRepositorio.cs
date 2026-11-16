@@ -1,6 +1,8 @@
 using PetLog.Dominio.Entidades;
 using Microsoft.EntityFrameworkCore;
 using PetLog.Repositorio.Interfaces;
+using Dapper;
+using System.Data;
 
 namespace PetLog.Repositorio
 {
@@ -28,9 +30,12 @@ namespace PetLog.Repositorio
 
         public async Task Deletar (Compra compra)
         {
-            compra.Ativo = false;
-            _contexto.Compras.Update(compra);
-            await _contexto.SaveChangesAsync();
+            var parametros = new {CompraID = compra.Id};
+
+            await _contexto.Database.GetDbConnection().ExecuteAsync("spDesativarCompra",
+                    parametros,
+                    commandType: CommandType.StoredProcedure);
+
         }
 
         public async Task <Compra> ObterPorId (int compraId)
@@ -66,9 +71,13 @@ namespace PetLog.Repositorio
 
         public async Task ConcluirCompra (Compra compra)
         {
-            compra.Concluido = true;
-            _contexto.Update(compra);
-            await _contexto.SaveChangesAsync();
+            var parametros = new {CompraID = compra.Id};
+            await _contexto.Database.GetDbConnection().ExecuteAsync("spConcluirCompra",
+                parametros,
+                commandType: CommandType.StoredProcedure);
+         //compra.Concluido = true;
+         //_contexto.Update(compra);
+         //await _contexto.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Compra>> ListarPorCliente(int clienteId)
