@@ -1,0 +1,44 @@
+.topbar_conteudo {
+    background-color: #1a3b07;
+
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+
+    width: 100%;
+    height: 12vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0, 30px;
+    box-shadow: 0 0 10px;
+    box-sizing: border-box;
+    z-index: 100;
+}
+
+.area_centro_topo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.pagina_conteudo {
+    margin-top: 10vh;
+}
+
+.botao_deslogar {
+    text-decoration: none;
+    color: #19a204;
+    font-size: 3.6vh;
+
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.logoPet {
+    width: 50px;
+    right: 45px;
+}
