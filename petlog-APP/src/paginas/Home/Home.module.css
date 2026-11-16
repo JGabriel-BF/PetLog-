@@ -1,0 +1,42 @@
+.pagina_conteudo {
+    padding: 100px;
+}
+
+.barra {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    max-width: 800px;
+}
+
+.select {
+    flex: 1;
+}
+
+.botao_ia {
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #1a3b07;
+    cursor: pointer;
+}
+
+.botao_ia:hover {
+    background-color: #093978;
+}
+
+.botao_ia:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.resultado {
+    margin-top: 30px;
+    max-width: 700px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+    white-space: pre-line;
+}

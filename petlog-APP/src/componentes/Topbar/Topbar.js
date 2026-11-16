@@ -20,7 +20,7 @@ export function Topbar ({children, childrenTopo}){
                 <div className={style.area_centro_topo}>
                         <TopbarItem texto = "Produtos" link="/produtos"/>
                         <TopbarItem texto = "Clientes" link="/clientes"/>
-                        <TopbarItem texto= "Vendedores" link="/vendedores" />
+                        <TopbarItem texto= "Home" link="/home" />
                         <TopbarItem texto= "Compras" link="/compras" />
                     {childrenTopo}
                 </div>
