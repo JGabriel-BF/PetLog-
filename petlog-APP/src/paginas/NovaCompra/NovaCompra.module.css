@@ -1,0 +1,47 @@
+.pagina_conteudo {
+    width: 100%;
+    padding: 50px;
+    padding-top: 40px;
+}
+
+.formulario {
+    max-width: 500px;
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+}
+
+.rotulo {
+    margin-top: 14px;
+}
+
+.total {
+    margin-top: 16px;
+    font-weight: bold;
+    color: #0b2a5b;
+}
+
+.formulario_botoes {
+    margin-top: 16px;
+}
+
+.botao_novo {
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #1a3b07;
+    border: none;
+    cursor: pointer;
+}
+
+.botao_novo:hover {
+    background-color: #093978;
+}
+
+@media (max-width: 768px) {
+    .pagina_conteudo {
+        padding: 20px;
+    }
+}
