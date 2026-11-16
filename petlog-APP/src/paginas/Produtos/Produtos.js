@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { MdEdit, MdDelete, MdRestore } from "react-icons/md";
+import { MdDriveFileRenameOutline, MdDelete, MdRestore } from "react-icons/md";
 import ProdutoAPI from "../../services/produtoAPI";
 import { Topbar } from "../../componentes/Topbar/Topbar";
 import { useAlert } from "../../componentes/Alert/AlertContext";
@@ -81,7 +81,7 @@ export function Produtos() {
                                 <span className={style.preco}>R$ {Number(p.preco).toFixed(2)}</span>
 
                                 <Link to="/produtos/editar" state={p.id} className={style.botao_editar}>
-                                    <MdEdit />
+                                    <MdDriveFileRenameOutline />
                                 </Link>
                                 {p.ativo ? (
                                     <button onClick={() => desativar(p.id)} className={style.botao_deletar}>
