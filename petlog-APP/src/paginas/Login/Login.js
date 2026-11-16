@@ -33,9 +33,9 @@ export function Login ()
             const response = await LoginAPI.loginAsync(email, senha);
 
             if (response?.status === 200) {
-                localStorage.setItem("usuario",JSON.stringify(response.data));
+                localStorage.setItem("vendedor",JSON.stringify(response.data));
                 mostrarAlerta(`Bem-Vindo, ${response.data.nome}!`, 'success', () => {
-                    navigate("/dashboard");
+                    navigate("/home");
                 });
             }
         }

@@ -1,0 +1,18 @@
+.topbar_item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 8px;
+}
+
+.topbar_item:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #f08830;
+}
+
+.texto_link {
+    font-size: 16px;
+}

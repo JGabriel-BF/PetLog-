@@ -3,6 +3,8 @@
     margin: 0 auto;
     border-collapse: collapse;
     table-layout: fixed;  /*  EXTREMAMENTE IMPORTANTE, sem essa linha o navegador ignora o colGroup      */
+    width: 75%;
+    -ms-layout-grid: initial ;
 }
 
 .corpo tr:hover td{

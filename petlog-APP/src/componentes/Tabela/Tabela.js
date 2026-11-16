@@ -1,6 +1,6 @@
 import { Table } from "react-bootstrap";
 import style from "./Tabela.module.css"
- 
+
 export function Tabela({ colunas, dados }) {
     return (
         <Table responsive className={style.tabela}>

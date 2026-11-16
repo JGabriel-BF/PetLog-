@@ -1,13 +1,13 @@
 .topbar_conteudo {
-    background-color: #070b3b;
+    background-color: #1a3b07;
 
     position: fixed;
     top: 0;
     bottom: 0;
     right: 0;
 
-    width: 80%;
-    height: 10vh;
+    width: 100%;
+    height: 12vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -30,10 +30,15 @@
 
 .botao_deslogar {
     text-decoration: none;
-    color: #070b3b;
+    color: #19a204;
     font-size: 3.6vh;
 
     display: flex;
     align-items: center;
     margin-right: 20px;
+}
+
+.logoPet {
+    width: 50px;
+    right: 45px;
 }
