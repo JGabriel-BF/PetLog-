@@ -7,6 +7,7 @@ import { Clientes } from './paginas/Cliente/Cliente';
 import { AlertProvider } from './componentes/Alert/AlertContext';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Compras } from './paginas/Compra/Compra';
+import { NovaCompra } from './paginas/NovaCompra/NovaCompra';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path='/produtos' element={<RotaLogin><Produtos /></RotaLogin>} />
           <Route path='/clientes' element={<RotaLogin><Clientes></Clientes></RotaLogin>} />
           <Route path='/compras' element={<RotaLogin><Compras /> </RotaLogin>} />
+          <Route path='/compras/novo' element={<RotaLogin> <NovaCompra /> </RotaLogin>} />
         </Routes>
       </BrowserRouter>
     </AlertProvider>

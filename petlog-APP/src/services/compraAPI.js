@@ -17,27 +17,28 @@ const CompraAPI = {
         return response.data;
     },
 
-    async criarAsync (compra) {
-        const response = await HTTPClient.post(`/Compra/Criar`, {
-            ClienteId: Number(compra.clienteId),
-            VendedorId: Number(compra.vendedorId),
-            ProdutoIds: compra.produtosIds.map(Number),
-            Quantidade: Number (compra.quantidade),
-            DataCompra: compra.datacompra
-        });
-        return response.data;
-    },
+async criarAsync (compra) {
+    const response = await HTTPClient.post(`/Compra/Criar`, {
+        ClienteId: Number(compra.clienteId),
+        VendedorId: Number(compra.vendedorId),
+        ProdutoIds: (compra.produtoIds || []).map(Number),
+        Quantidade: Number(compra.quantidade),
+        DataCompra: compra.dataCompra
+    });
+    return response.data;
+},
 
-    async atualizarAsync(compra) {
-        const response = await HTTPClient.put (`/Compra/Atualizar`, {
-            Id: compra.id,
-            ClienteId: Number(compra.clienteId),
-            VendedorId: Number(compra.vendedorId),
-            Quantidade: Number(compra.quantidade),
-            DataCompra: compra.datacompra
-        });
-        return response.data;
-    },
+async atualizarAsync(compra) {
+    const response = await HTTPClient.put(`/Compra/Atualizar`, {
+        Id: compra.id,
+        ClienteId: Number(compra.clienteId),
+        VendedorId: Number(compra.vendedorId),
+        ProdutoIds: (compra.produtoIds || []).map(Number),
+        Quantidade: Number(compra.quantidade),
+        DataCompra: compra.dataCompra
+    });
+    return response.data;
+},
 
     async concluirAsync(compraId) {
         const response = await HTTPClient.put(`/Compra/Concluir/${compraId}`);

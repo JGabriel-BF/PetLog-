@@ -22,7 +22,7 @@ export function Compras() {
     async function carregar() {
         try {
             const dados = busca.trim()
-                ? await CompraAPI.buscarAsync(busca, ativos)
+                ? await CompraAPI.buscaAsync(busca, ativos)
                 : await CompraAPI.listarAsync(ativos);
             setCompras(dados);
         } catch (erro) {
