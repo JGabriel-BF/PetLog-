@@ -75,9 +75,7 @@ namespace PetLog.Repositorio
             await _contexto.Database.GetDbConnection().ExecuteAsync("spConcluirCompra",
                 parametros,
                 commandType: CommandType.StoredProcedure);
-         //compra.Concluido = true;
-         //_contexto.Update(compra);
-         //await _contexto.SaveChangesAsync();
+
         }
 
         public async Task<IEnumerable<Compra>> ListarPorCliente(int clienteId)
